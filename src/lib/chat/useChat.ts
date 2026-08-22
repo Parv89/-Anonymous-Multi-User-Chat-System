@@ -212,14 +212,22 @@ export function useChat() {
       const content = censor(raw.trim());
       sentAt.current = [...sentAt.current.filter((t) => Date.now() - t < 5000), Date.now()];
 
-      const { error: err } = await supabase.from("messages").insert({
-        room,
-        session_id: session.id,
-        author_name: session.name,
-        avatar_seed: session.avatarSeed,
-        content,
-      });
+      const { data, error: err } = await supabase
+        .from("messages")
+        .insert({
+          room,
+          session_id: session.id,
+          author_name: session.name,
+          avatar_seed: session.avatarSeed,
+          content,
+        })
+        .select()
+        .single();
       if (err) return { ok: false, reason: err.message.replace(/^.*Slow down/, "Slow down") };
+      const inserted = data as ChatMessage | null;
+      if (inserted) {
+        setMessages((prev) => (prev.some((m) => m.id === inserted.id) ? prev : [...prev, inserted]));
+      }
       return { ok: true, censored: flagged };
     },
     [room, session],
