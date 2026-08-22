@@ -95,7 +95,7 @@ export function MessageList({ messages, events, reactions, sessionId, typing, lo
         {items.map((item) => {
           if (item.kind === "event") {
             return (
-              <div key={item.data.id} className="flex justify-center py-2">
+              <div key={item.data.id} className="flex shrink-0 justify-center py-2">
                 <span className="rise-in rounded-full border border-border bg-surface px-3 py-1 text-[0.65rem] text-muted-foreground">
                   {item.data.name} {item.data.kind === "join" ? "slipped in" : "vanished"}
                 </span>
@@ -110,7 +110,7 @@ export function MessageList({ messages, events, reactions, sessionId, typing, lo
           return (
             <div
               key={m.id}
-              className={cn("rise-in group flex gap-3 py-1.5", self && "flex-row-reverse")}
+              className={cn("rise-in group flex shrink-0 gap-3 py-1.5", self && "flex-row-reverse")}
               onMouseLeave={() => setPicker((p) => (p === m.id ? null : p))}
             >
               <AnonAvatar name={m.author_name} seed={m.avatar_seed} />
