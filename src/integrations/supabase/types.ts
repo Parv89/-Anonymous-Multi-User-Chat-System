@@ -14,13 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      message_reactions: {
+        Row: {
+          created_at: string
+          emoji: string
+          id: string
+          message_id: string
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          emoji: string
+          id?: string
+          message_id: string
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          emoji?: string
+          id?: string
+          message_id?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_reactions_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          author_name: string
+          avatar_seed: string
+          content: string
+          created_at: string
+          id: string
+          room: string
+          session_id: string
+        }
+        Insert: {
+          author_name: string
+          avatar_seed?: string
+          content: string
+          created_at?: string
+          id?: string
+          room: string
+          session_id: string
+        }
+        Update: {
+          author_name?: string
+          avatar_seed?: string
+          content?: string
+          created_at?: string
+          id?: string
+          room?: string
+          session_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      purge_expired_messages: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
