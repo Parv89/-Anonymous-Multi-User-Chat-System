@@ -78,8 +78,9 @@ export function MessageList({ messages, events, reactions, sessionId, typing, lo
       <div
         ref={scroller}
         onScroll={handleScroll}
-        className="scroll-slim ambient-grid flex h-full flex-col justify-end space-y-1 overflow-y-auto px-3 py-6 md:px-8"
+        className="scroll-slim ambient-grid flex h-full flex-col space-y-1 overflow-y-auto px-3 py-6 md:px-8"
       >
+        <div className="flex-1" />
         {loading && <p className="py-10 text-center text-xs text-muted-foreground">Decrypting the last 24 hours…</p>}
 
         {!loading && !items.length && (
