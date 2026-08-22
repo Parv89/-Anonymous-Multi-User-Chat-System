@@ -40,4 +40,4 @@ export const ROOMS: Room[] = [
   },
 ];
 
-export const getRoom = (id: string): Room => ROOMS.find((r) => r.id === id) ?? ROOMS[0];
+export const getRoom = (id: string): Room => ROOMS.find((r) => r.id === id) ?? ROOMS[0]!;

@@ -45,7 +45,7 @@ function loadSession(): Session {
 
 export function useChat() {
   const [session, setSession] = useState<Session | null>(null);
-  const [room, setRoom] = useState<string>(ROOMS[0].id);
+  const [room, setRoom] = useState<string>(ROOMS[0]!.id);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [reactions, setReactions] = useState<Reaction[]>([]);
   const [events, setEvents] = useState<SystemEvent[]>([]);
